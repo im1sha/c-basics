@@ -98,17 +98,26 @@ int main()
         std::wcin >> registrationNumber;
         std::wcout << L"Year" << std::endl << std::flush;
         std::wcin >> year;
-        std::wcout << 
-          (hash->Add(Book(registrationNumber,
-                          authorFirstName,
-                          authorMiddleName,
-                          authorLastName,
-                          bookName,
-                          (size_t)std::stoi(year),
-                          publisher,
-                          (size_t)std::stoi(pagesCount))) 
-            ? L"Add succeeded" 
-            : L"Add failed") << std::endl << std::flush;
+        try
+        {
+          size_t yearAsSizet = (size_t)std::stoi(year);
+          size_t pagesCountAsSizet = (size_t)std::stoi(year);
+          std::wcout <<
+            (hash->Add(Book(registrationNumber,
+              authorFirstName,
+              authorMiddleName,
+              authorLastName,
+              bookName,
+              yearAsSizet,
+              publisher,
+              pagesCountAsSizet))
+              ? L"Add succeeded"
+              : L"Add failed") << std::endl << std::flush;
+        }
+        catch (...)
+        {
+          std::wcout << "Invalid input" << std::endl << std::flush;
+        }      
       }
       break;
     }
